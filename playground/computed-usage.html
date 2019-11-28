@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  .warning {
+    color: red;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+<!-- 단순히 값뿐 만 아니라 특정 조건도 넣을(boolean)값을 넣을 수 있음  밑에 것 보다 더 직관적인-->
+    <!-- <p v-bind:class="errorTextColor">Hello</p> -->
+    <!-- isError 가 true면 warning에 해당하는 값이 들어가고 아니면 안들어감 -->
+    <p v-bind:class="{ warning: isError }">Hello</p>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        // cname: 'blue-text',
+        isError: false
+      },
+      computed: {
+        errorTextColor: function() {
+          // if (isError) {
+          //   return 'warning'
+          // } else {
+          //   return null;
+          // }
+          return this.isError ? 'warning' : null;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
