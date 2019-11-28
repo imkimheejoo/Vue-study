@@ -8,10 +8,12 @@
 </head>
 <body>
     <div id="app">
+        <!-- v-on : 키보드 입력, 마우스입력 관련 함수 -->
         <button v-on:click="logText">Click me</button>
         <!-- <input type="text" v-on:키보드입력이벤트타입="메서드이름"> -->
         <input type="text" v-on:keyup="logText"> <!-- 키보드 칠때마다 메서드 실행됨-->
         <input type="text" v-on:keyup.enter="logText"> <!-- Enter 칠때마다 메서드 실행됨-->
+        <button>add</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
