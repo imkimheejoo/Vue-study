@@ -40,7 +40,8 @@ export default {
         username: this.username,
         password: this.password
       }
-      axios.post(url, data).then(function(response) {
+      axios.post(url, data)
+      .then(function(response) {
         console.log(response);
         
       }).catch(function(error) {
