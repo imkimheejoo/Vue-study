@@ -1,9 +1,8 @@
 <template>
     <div>
-        <div v-if="msg !== ''">
+        <div v-show="msg !== ''">
             <input v-model="msg">
-            <button>수정</button>
-            <button>삭제</button>
+            <button v-on:click="removeMessage">삭제</button>
         </div>
     </div>
 </template>
@@ -13,6 +12,11 @@
         name: "TodoList",
         props: {
             msg: String,
+        },
+        methods: {
+            removeMessage: function () {
+                this.msg = '';
+            }
         }
     }
 </script>
