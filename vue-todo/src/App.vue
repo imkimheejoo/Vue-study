@@ -9,9 +9,7 @@
             <button @click="sendMessage">Add</button>
         </form>
 
-        <todo-list v-bind:msg="asdasdfa"></todo-list>
-
-
+        <todo-list v-bind:msg="todo"></todo-list>
     </div>
 </template>
 
@@ -23,7 +21,7 @@
         data: function () {
             return {
                 message: '',
-                asdasdfa: []
+                todo: ''
             }
         },
         components: {
@@ -35,8 +33,8 @@
                 this.$emit('submitMessage')
             },
             sendMessage() {
-                this.asdasdfa.push(this.message);
-                window.console.log(this.message)
+                this.todo = this.message;
+                window.console.log(this.todo)
             }
         }
     }

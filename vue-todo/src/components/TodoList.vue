@@ -1,10 +1,10 @@
 <template>
     <div>
-        <ol>
-            <li v-for="m in msg" :key="msg">
-                {{ m }}
-            </li>
-        </ol>
+        <div v-if="msg !== ''">
+            <input v-model="msg">
+            <button>수정</button>
+            <button>삭제</button>
+        </div>
     </div>
 </template>
 
@@ -12,7 +12,7 @@
     export default {
         name: "TodoList",
         props: {
-            msg: Array,
+            msg: String,
         }
     }
 </script>
