@@ -6,30 +6,37 @@
 
         <form v-on:click.prevent="createTodo">
             <input type="text" id="message" placeholder="할 일을 입력해 주세요." v-model="message">
-            <button @click="sendMessage">Add</button>
+            <button class="btn btn-danger" @click="sendMessage">Add</button>
         </form>
 
         <todo-list v-bind:msg="todo"></todo-list>
+        <div class="container">
+            <div class="row">
+                <Card class="col-lg-3 m-2" v-for="(value,index) in array" :key="index"/>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import TodoList from "./components/TodoList";
+    import Card from "./components/Card";
 
     export default {
         name: "App",
         data: function () {
             return {
+                array: ['a', 'b', 'c', 'd'],
                 message: '',
                 todo: ''
             }
         },
         components: {
             TodoList,
+            Card
         },
         methods: {
             createTodo: function () {
-                document.getElementById('message')
                 this.$emit('submitMessage')
             },
             sendMessage() {
