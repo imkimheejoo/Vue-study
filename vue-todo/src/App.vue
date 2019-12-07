@@ -1,48 +1,48 @@
 <template>
-    <div>
+    <div class="container text-center">
         <header>
             <h1>TODO!</h1>
         </header>
 
-        <form v-on:click.prevent="createTodo">
-            <input type="text" id="message" placeholder="할 일을 입력해 주세요." v-model="message">
-            <button class="btn btn-danger" @click="sendMessage">Add</button>
+        <form>
+            <div class="row justify-content-center" style="max-width: 800px">
+                <input type="text" class="form-control mb-1 col-sm-5" placeholder="제목을 입력해주세요." v-model="title">
+                <input type="text" class="form-control col-sm-5 ml-2" placeholder="내용을 입력해주세요." v-model="content">
+                <button class="btn btn-danger col-sm-1 ml-2" v-on:click.prevent="createTodo">Add</button>
+            </div>
+
         </form>
 
-        <todo-list v-bind:msg="todo"></todo-list>
-        <div class="container">
-            <div class="row">
-                <Card class="col-lg-3 m-2" v-for="(value,index) in array" :key="index"/>
+        <div v-if="array.length>=1" class="container">
+            <div class="row justify-content-center">
+                <Card class="col-lg-3 m-2" v-for="(data,index) in array" :key="index" v-bind:data="data"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import TodoList from "./components/TodoList";
     import Card from "./components/Card";
 
     export default {
         name: "App",
         data: function () {
             return {
-                array: ['a', 'b', 'c', 'd'],
-                message: '',
-                todo: ''
+                array: [],
+                title: '',
+                content: ''
             }
         },
         components: {
-            TodoList,
             Card
         },
         methods: {
             createTodo: function () {
-                this.$emit('submitMessage')
+                // const {title, content} = this
+                this.array.push({title: this.title, content: this.content})
+                this.title = ''
+                this.content = ''
             },
-            sendMessage() {
-                this.todo = this.message;
-                window.console.log(this.todo)
-            }
         }
     }
 </script>
