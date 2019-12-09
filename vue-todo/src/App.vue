@@ -3,47 +3,37 @@
         <header>
             <h1>TODO!</h1>
         </header>
-        <div>
-            <form>
-                <div class="row justify-content-center">
-                    <input class="col-sm-3 ml-4 form-control" placeholder="제목을 입력해주세요." v-model="title">
-                    <input class="col-sm-3 ml-2 form-control" placeholder="할 일을 입력해주세요." v-model="content">
-                    <button class="col-sm-1 btn btn-info ml-1" v-on:click.prevent="createTodo" type="submit">추가</button>
-                </div>
-            </form>
+        <!--        v-on:하위 컴포넌트에서 발생한 이벤트이름="상위 컴포넌트 메서드 이름"-->
+        <input-form v-on:create="inputTodo" class="m-3"></input-form>
+        <div class="row justify-content-center">
+            <div class="col-lg-3 m-2" v-for="(value,index) in todos" v-bind:key="index">
+                <!--            value라는 객체를 하위타입의 'data'로 보내겠습니다.-->
+                <card v-bind:data="value"></card>
+            </div>
         </div>
-        <div>{{todoList}}</div>
-        <div v-for="(value,index) in todoList" v-bind:key="index">
-            <!--            value라는 객체를 하위타입의 'data'로 보내겠습니다.-->
-            <card v-bind:data="value"></card>
-        </div>
-
     </div>
 </template>
 
 <script>
     import Card from "./components/Card";
+    import InputForm from "./components/Input";
 
     export default {
         name: "App",
         components: {
-            Card
+            Card, InputForm
         },
         data: function () {
             return {
-                title: '',
-                content: '',
-                todoList: []
+                todos: []
             }
         },
         methods: {
-            createTodo: function () {
-                this.todoList.push({title: this.title, content: this.content});
+            inputTodo: function (todo) {
+                this.todos.push(todo);
             }
         }
     }
 </script>
-
 <style scoped>
-
 </style>
