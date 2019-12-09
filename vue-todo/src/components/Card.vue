@@ -5,6 +5,7 @@
             <h5 class="card-title">{{data.title}}</h5>
             <p class="card-text">{{data.content}}</p>
         </div>
+        <button class="btn btn-light" v-on:click.prevent="removeTodo">완료</button>
     </div>
 
 </template>
@@ -12,7 +13,13 @@
 <script>
     export default {
         name: "card",
-        props: ['data']
+        props: ['data'],
+        methods: {
+            removeTodo: function () {
+                this.$emit('remove', this.data)
+            }
+        }
+
     }
 </script>
 
