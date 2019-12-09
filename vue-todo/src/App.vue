@@ -3,21 +3,21 @@
         <header>
             <h1>TODO!</h1>
         </header>
-
-        <form>
-            <div class="row justify-content-center" style="max-width: 800px">
-                <input type="text" class="form-control mb-1 col-sm-5" placeholder="제목을 입력해주세요." v-model="title">
-                <input type="text" class="form-control col-sm-5 ml-2" placeholder="내용을 입력해주세요." v-model="content">
-                <button class="btn btn-danger col-sm-1 ml-2" v-on:click.prevent="createTodo">Add</button>
-            </div>
-
-        </form>
-
-        <div v-if="array.length>=1" class="container">
-            <div class="row justify-content-center">
-                <Card class="col-lg-3 m-2" v-for="(data,index) in array" :key="index" v-bind:data="data"/>
-            </div>
+        <div>
+            <form>
+                <div class="row justify-content-center">
+                    <input class="col-sm-3 ml-4 form-control" placeholder="제목을 입력해주세요." v-model="title">
+                    <input class="col-sm-3 ml-2 form-control" placeholder="할 일을 입력해주세요." v-model="content">
+                    <button class="col-sm-1 btn btn-info ml-1" v-on:click.prevent="createTodo" type="submit">추가</button>
+                </div>
+            </form>
         </div>
+        <div>{{todoList}}</div>
+        <div v-for="(value,index) in todoList" v-bind:key="index">
+            <!--            value라는 객체를 하위타입의 'data'로 보내겠습니다.-->
+            <card v-bind:data="value"></card>
+        </div>
+
     </div>
 </template>
 
@@ -26,23 +26,20 @@
 
     export default {
         name: "App",
-        data: function () {
-            return {
-                array: [],
-                title: '',
-                content: ''
-            }
-        },
         components: {
             Card
         },
+        data: function () {
+            return {
+                title: '',
+                content: '',
+                todoList: []
+            }
+        },
         methods: {
             createTodo: function () {
-                // const {title, content} = this
-                this.array.push({title: this.title, content: this.content})
-                this.title = ''
-                this.content = ''
-            },
+                this.todoList.push({title: this.title, content: this.content});
+            }
         }
     }
 </script>
